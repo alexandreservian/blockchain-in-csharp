@@ -1,5 +1,6 @@
 ﻿using System;
 using Blockchain.Utils;
+using Blockchain.Features;
 
 namespace Blockchain
 {
@@ -7,8 +8,9 @@ namespace Blockchain
     {
         static void Main(string[] args)
         {
-            string name = Hashing.ToSha256("alexandre servian");
-            Console.WriteLine(name);
+            Block geneses = Block.geneses();
+            string hashGeneses = Block.calculateHash(geneses.ToString());
+            Console.WriteLine(hashGeneses);
         }
     }
 }

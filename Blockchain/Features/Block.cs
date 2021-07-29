@@ -1,7 +1,8 @@
 using System;
+using Blockchain.Utils;
 
 namespace Blockchain.Features {
-  class Block {
+  public class Block {
     private long block;
     private long timestamp;
     private string data;
@@ -28,13 +29,22 @@ namespace Blockchain.Features {
           timestamp = timestamp,
           data = "Geneses block",
           prevHash = "0000000000000000000000000000000000000000000000000000000000000000",
-          hash = "8724f78170aee146b794ca6ad451d23c254717727e18e2b9643b81d5666aa908",
+          hash = "5DEEEBA5D8127A736E9809697B28C89CE1F59FC6860DB6F67CAB1C590EEF5231",
           nonce = 5110
         };
     }
 
-    public static string calculateHash(){
-      return "";
+    public override string ToString(){
+      string block = this.block.ToString();
+      string timestamp = this.timestamp.ToString();
+      string nonce = this.nonce.ToString();
+      string result = $"{block}{timestamp}{this.data}{this.prevHash}{nonce}";
+
+      return result;
+    }
+
+    public static string calculateHash(string block){
+      return Hashing.ToSha256(block);
     }
   }
 }
